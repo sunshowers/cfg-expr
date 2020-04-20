@@ -3,7 +3,7 @@ use crate::error::Reason;
 mod list;
 
 /// A list of all of the [builtin](https://doc.rust-lang.org/nightly/nightly-rustc/rustc_target/spec/index.html#modules)
-/// targets known to rustc, as of 1.41
+/// targets known to rustc, as of 1.42
 pub use list::ALL_TARGETS as ALL;
 
 macro_rules! target_enum {
@@ -218,7 +218,7 @@ pub fn get_target_by_triple(triple: &str) -> Option<&'static TargetInfo> {
 /// versions.
 ///
 /// ```
-/// assert_eq!("1.41.0", cfg_expr::targets::rustc_version());
+/// assert_eq!("1.42.0", cfg_expr::targets::rustc_version());
 /// ```
 pub fn rustc_version() -> &'static str {
     list::RUSTC_VERSION

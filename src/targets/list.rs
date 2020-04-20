@@ -8,7 +8,7 @@
 
 use super::*;
 
-pub(crate) const RUSTC_VERSION: &str = "1.41.0";
+pub(crate) const RUSTC_VERSION: &str = "1.42.0";
 
 pub const ALL_TARGETS: &[TargetInfo] = &[
     TargetInfo {
@@ -388,6 +388,26 @@ pub const ALL_TARGETS: &[TargetInfo] = &[
         env: Some(Env::gnu),
         vendor: Some(Vendor::wrs),
         family: Some(Family::unix),
+        pointer_width: 32,
+        endian: Endian::little,
+    },
+    TargetInfo {
+        triple: "armv7a-none-eabi",
+        os: None,
+        arch: Arch::arm,
+        env: None,
+        vendor: None,
+        family: None,
+        pointer_width: 32,
+        endian: Endian::little,
+    },
+    TargetInfo {
+        triple: "armv7a-none-eabihf",
+        os: None,
+        arch: Arch::arm,
+        env: None,
+        vendor: None,
+        family: None,
         pointer_width: 32,
         endian: Endian::little,
     },

@@ -81,6 +81,7 @@ impl TargetPredicate {
 
 /// A single predicate in a `cfg()` expression
 #[derive(Debug, PartialEq)]
+#[non_exhaustive]
 pub enum Predicate<'a> {
     /// A target predicate, with the `target_` prefix
     Target(TargetPredicate),

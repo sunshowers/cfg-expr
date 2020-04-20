@@ -60,6 +60,7 @@ macro_rules! impl_from_str {
 target_enum! {
     /// All of the operating systems known to rustc
     #[derive(Clone, Copy, PartialEq, Debug)]
+    #[non_exhaustive]
     pub enum Os {
         haiku,
         openbsd,
@@ -89,6 +90,7 @@ target_enum! {
 target_enum! {
     /// The endian types known to rustc
     #[derive(Clone, Copy, PartialEq, Debug)]
+    #[non_exhaustive]
     pub enum Endian {
         big,
         little,
@@ -98,6 +100,7 @@ target_enum! {
 target_enum! {
     /// All of the target environments known to rustc
     #[derive(Clone, Copy, PartialEq, Debug)]
+    #[non_exhaustive]
     pub enum Env {
         uclibc,
         sgx,
@@ -113,6 +116,7 @@ target_enum! {
 target_enum! {
     /// All of the target vendors known to rustc
     #[derive(Clone, Copy, PartialEq, Debug)]
+    #[non_exhaustive]
     pub enum Vendor {
         pc,
         unknown,
@@ -129,6 +133,7 @@ target_enum! {
 target_enum! {
     /// All of the CPU architectures known to rustc
     #[derive(Clone, Copy, PartialEq, Debug)]
+    #[non_exhaustive]
     pub enum Arch {
         x86_64,
         wasm32,
@@ -153,6 +158,7 @@ target_enum! {
 target_enum! {
     /// All of the target families known to rustc
     #[derive(Clone, Copy, PartialEq, Debug)]
+    #[non_exhaustive]
     pub enum Family {
         /// Everything that isn't windows, and has a family!
         unix,

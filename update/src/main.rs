@@ -75,7 +75,7 @@ fn real_main() -> Result<(), String> {
     all_targets.push_str(
         "
 
-        pub const ALL_TARGETS: &[TargetInfo] = &[
+        pub const ALL_TARGETS: &[TargetInfo<'static>] = &[
 ",
     );
 

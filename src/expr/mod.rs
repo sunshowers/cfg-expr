@@ -64,7 +64,7 @@ impl TargetPredicate {
     ///     tp::Vendor(Some(Vendor::pc)).matches(win)
     /// );
     /// ```
-    pub fn matches(self, target: &targ::TargetInfo) -> bool {
+    pub fn matches(self, target: &targ::TargetInfo<'_>) -> bool {
         use TargetPredicate::*;
 
         match self {

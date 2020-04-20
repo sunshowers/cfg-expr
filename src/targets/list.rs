@@ -10,7 +10,7 @@ use super::*;
 
 pub(crate) const RUSTC_VERSION: &str = "1.42.0";
 
-pub const ALL_TARGETS: &[TargetInfo] = &[
+pub const ALL_TARGETS: &[TargetInfo<'static>] = &[
     TargetInfo {
         triple: "aarch64-apple-ios",
         os: Some(Os::ios),

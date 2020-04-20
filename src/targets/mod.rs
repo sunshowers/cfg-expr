@@ -169,9 +169,9 @@ target_enum! {
 
 /// Contains information regarding a particular target known to rustc
 #[derive(Debug)]
-pub struct TargetInfo {
+pub struct TargetInfo<'a> {
     /// The target's unique identifier
-    pub triple: &'static str,
+    pub triple: &'a str,
     /// The target's operating system, if any. Used by the
     /// [target_os](https://doc.rust-lang.org/reference/conditional-compilation.html#target_os)
     /// predicate.
@@ -207,7 +207,7 @@ pub struct TargetInfo {
 /// ```
 /// assert!(cfg_expr::targets::get_target_by_triple("x86_64-unknown-linux-musl").is_some());
 /// ```
-pub fn get_target_by_triple(triple: &str) -> Option<&'static TargetInfo> {
+pub fn get_target_by_triple(triple: &str) -> Option<&'static TargetInfo<'static>> {
     ALL.binary_search_by(|ti| ti.triple.cmp(triple))
         .map(|i| &ALL[i])
         .ok()

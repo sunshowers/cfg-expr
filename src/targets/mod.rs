@@ -25,7 +25,7 @@ macro_rules! target_enum {
             )+
         }
 
-        impl_from_str! {
+        impl_str_conversions! {
             $kind {
                 $(
                     $(#[$inner $($args)*])*
@@ -36,7 +36,7 @@ macro_rules! target_enum {
     };
 }
 
-macro_rules! impl_from_str {
+macro_rules! impl_str_conversions {
     (
         $kind:ident {
             $(
@@ -45,12 +45,23 @@ macro_rules! impl_from_str {
             )+
         }
     ) => {
+        // string -> enum
         impl std::str::FromStr for $kind {
             type Err = Reason;
             fn from_str(s: &str) -> Result<Self, Self::Err> {
                 match s {
                     $(stringify!($name) => Ok(Self::$name),)+
                     _ => Err(Reason::Unexpected(&[$(stringify!($name),)+])),
+                }
+            }
+        }
+
+        // enum -> string
+        impl $kind {
+            /// Converts `self` into a static string.
+            pub fn to_static_str(self) -> &'static str {
+                match self {
+                    $(Self::$name => stringify!($name),)+
                 }
             }
         }
@@ -246,5 +257,12 @@ mod test {
                 .filter(|ti| ti.os == Some(super::Os::ios))
                 .count()
         );
+    }
+
+    // Ensure that to_static_str works.
+    #[test]
+    fn to_static_str_works() {
+        assert_eq!(super::Os::haiku.to_static_str(), "haiku");
+        assert_eq!(super::Arch::aarch64.to_static_str(), "aarch64");
     }
 }
